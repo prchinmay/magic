@@ -78,7 +78,7 @@ An action typically should have intermediate *steps* which have to be achieved w
 K-Means clustering identifies these *steps* as clusters of points having a cluster center. The cluster center corresponds to the ideal pose(that of the top athlete).
 This allows us to determine how accturate is a user's pose compared to the closest reference *step*(cluster center). 
 
-### Comparing a User's action to refrence action
+### Comparing a User's action in Video B to refrence action in Video A
 This is performed in `monitor_action.py`. Again, pose data from Video B is extracted frame by frame using `get_pose()` method. This is then processed by the method `get_status()` by using 
 cluster model weights from the previous step. In the figure shown below, *p<sub>i</sub>* reresents the reference ideal pose of the top athlete. Let *p<sub>i</sub>* be the user's pose at any point in time. 
 Then, the similarity of the user's pose to the closest ideal pose, is given by the formulas for *S<sub>ij</sub>* below. The metric is a modified version of the 
