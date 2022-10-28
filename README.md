@@ -4,9 +4,9 @@ magic
 ## Overview
 This repository contains code for analyzing a user's pose to a given reference pose. These are the following Sections:
 
-1. [File] - Details of files and directories in this repository)\
-2. [Usage] - Step by step instructions to execute this code)\
-3. [Explanation] - Reasoning behind the code)\
+1. [File] - Details of files and directories in this repository)
+2. [Usage] - Step by step instructions to execute this code)
+3. [Explanation] - Reasoning behind the code)
 
 ## 1. Files
 `data/` - Folder containing reference and test videos. Also saves annotated video and clustering model here. \
@@ -14,9 +14,9 @@ This repository contains code for analyzing a user's pose to a given reference p
 `define_action.py` - Code for defining "Wave" action based on reference Video. \
 `monitor_action.py` - Process User provided Video and compare action with pre defined action. \
 `console_output.mp4` - Screen recording of console output for `monitor_action.py`. \
-`utils.py` - Wave action Class and member functions.
-`requirements.txt` - Contains all package dependencies.
-`README.md` - Readme file for this repository.
+`utils.py` - Wave action Class and member functions.\
+`requirements.txt` - Contains all package dependencies.\
+`README.md` - Readme file for this repository.\
 
 ## 2. Usage
 
@@ -62,24 +62,24 @@ This Section provides the reasoning behind the code utilised in this solution.
 
 ### Defining the Wave action from Video A
 This is performed in `define_action.py`. Pose data from all frames in Video A are extracted and stored in in variable `action` using `get_pose()` method. 
-A simple K-Means clustering is performed on this data to define the action and identify the intermediate steps. The `n_clusters` hyperparameter gives the number of steps in the Wave action.
-In this solution 3 steps are identified— 1)start, 2)mid, 3)end. "start" and "end" are extreme positions and mid is the intermediate position. If more intermediate steps are required, 
-`n_clusters` can be defined appropriately. K-Means clustering was chosen for the following reasons:\
+A simple K-Means clustering is performed on this data to define the action and identify the intermediate *steps*. The `n_clusters` hyperparameter gives the number of *steps* in the Wave action.
+In this solution 3 *steps* are identified— 1)start, 2)mid, 3)end. "start" and "end" are extreme positions and mid is the intermediate position. If more intermediate *steps* are required, 
+`n_clusters` can be defined appropriately. K-Means clustering was chosen for the following reasons:
 
-* speed: K-Means is one of the fastest ML algorithms especially for unsupervised data. This should work well for real time processing.\
-* scalablity: K-Means scales well for large datasets for less number of clusters. It is expected that intermediate steps is less than 10 for any action.\
-* data driven: Does not need manual supervision/ feature engineering. Intermediate steps is diveded into clusters without explicitly defining. 
+* **speed**: K-Means is one of the fastest ML algorithms especially for unsupervised data. This should work well for real time processing.
+* **scalablity**: K-Means scales well for large datasets for less number of clusters. It is expected that intermediate steps is less than 10 for any action.
+* **data driven**: Does not need manual supervision/ feature engineering. Intermediate steps is diveded into clusters without explicitly defining. 
 Although it does allow a user to input priors(if required).\
-* application: The intuition behind using clustering was the context provided by the assignment document. The fitness app guides a user to follow a reference action. 
-An action typically should have intermediate "steps" which have to be achieved with a certain "accuracy". This is particularly the case for Yoga, weightlifting, pilates etc,. 
-K-Means clustering identifies these steps as clusters of points having a cluster center. The cluster center corresponds to the ideal pose(that of the top athlete).\
+* **application**: The intuition behind using clustering was the context provided by the assignment document. The fitness app guides a user to follow a reference action. 
+An action typically should have intermediate *steps* which have to be achieved with a certain *accuracy*. This is particularly the case for Yoga, weightlifting, pilates etc,. 
+K-Means clustering identifies these *steps* as clusters of points having a cluster center. The cluster center corresponds to the ideal pose(that of the top athlete).
 
-Figure below shows a 2D PCA(Principal Component Analysis) projection of the poses in Wave action from Video A.\
-![cluster](pics/cluster.png) 
-![cosine](pics/cosine.png)
-![thresh](pics/thresh.png)
-![correct](pics/correct.png) 
-![incorrect](pics/incorrect.png)   
+Figure below shows a 2D PCA(Principal Component Analysis) projection of the poses in Wave action from Video A.
+![cluster](pics/cluster.PNG) 
+![cosine](pics/cosine.PNG)
+![thresh](pics/thresh.PNG)
+![correct](pics/correct.PNG) 
+![incorrect](pics/incorrect.PNG)   
 
 
   
