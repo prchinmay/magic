@@ -30,8 +30,8 @@ def get_thresh(kmeans):
     Returns:
         Scalar value between [0,100].
     """
-    a = kmeans.cluster_centers_[0]
-    b = kmeans.cluster_centers_[1]
+    a = kmeans.cluster_centers_[1]
+    b = kmeans.cluster_centers_[2]
     return cosine_sim(a,b)
     
 def annotate_vid(image, results, mp_pose, mp_drawing, out):
