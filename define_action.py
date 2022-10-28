@@ -21,6 +21,7 @@ pose = mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5)
 param = params.get_general_params()
 wave = Wave()
 
+print('Collecting pose data from video')
 #Obtain pose data from Video feed 
 cap = cv2.VideoCapture(param['vid_train'])
 if cap.isOpened() == False:
@@ -38,7 +39,8 @@ while cap.isOpened():
     for i in range(len(landmarks)):
         data[frame_num, i, :] = (landmarks[i].x, landmarks[i].y, landmarks[i].z)
     frame_num += 1
-    
+
+print('Indentifying intermediate steps in Wave action in')    
 #K-Means Clustering to define intermediate steps in Wave action    
 action = data.reshape(data.shape[0], data.shape[1]*data.shape[2])
 kmeans = KMeans(n_clusters=param['n_clusters'], init ='k-means++',random_state=param['random_state'])

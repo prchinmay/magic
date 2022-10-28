@@ -12,10 +12,10 @@ def get_general_params():
     param = {}
     
     # Input and ouput paths 
-    param['vid_train'] = "A.mp4"
-    param['vid_test'] = "B.mp4"
-    param['vid_annotated'] = "B_annotated.mp4"
-    param['model'] = 'kmeans.pickle'
+    param['vid_train'] = "data/A.mp4"
+    param['vid_test'] = "data/B.mp4"
+    param['vid_annotated'] = "data/B_annotated.mp4"
+    param['model'] = 'data/kmeans.pickle'
     
     # Other parameters
     param['map'] = {1:'start', 2:'mid', 0:'end'} # Mapping from k-means cluters to intermediate steps in action
