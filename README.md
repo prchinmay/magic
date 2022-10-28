@@ -72,7 +72,7 @@ K-Means clustering was chosen for the following reasons:
 * **speed**: K-Means is one of the fastest ML algorithms especially for unsupervised data. This should work well for real time processing.
 * **scalablity**: K-Means scales well for large datasets for less number of clusters. It is expected that intermediate steps is less than 10 for any action.
 * **data driven**: Does not need manual supervision/ feature engineering. Intermediate steps is diveded into clusters without explicitly defining. 
-Although it does allow a user to input priors(if required).\
+Although it does allow a user to input priors(if required).
 * **application**: The intuition behind using clustering was the context provided by the assignment document. The fitness app guides a user to follow a reference action. 
 An action typically should have intermediate *steps* which have to be achieved with a certain *accuracy*. This is particularly the case for Yoga, weightlifting, pilates etc,. 
 K-Means clustering identifies these *steps* as clusters of points having a cluster center. The cluster center corresponds to the ideal pose(that of the top athlete).

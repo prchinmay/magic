@@ -44,7 +44,7 @@ while cap.isOpened():
         break
     results = wave.get_pose(image, pose)
     completion, reps = wave.get_status(results, kmeans, param, image, threshold)
-    annotate_vid(image, results, mp_pose, mp_drawing, out)
+    #annotate_vid(image, results, mp_pose, mp_drawing, out)
     
 pose.close()
 cap.release()
