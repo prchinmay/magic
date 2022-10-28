@@ -2,11 +2,12 @@ magic
 =================
 
 ## Overview
-This repository contains code for analyzing a user's pose to a given reference pose. These are the following Sections:
+This repository contains code for analyzing a user's pose to a given reference pose. Watch the Video B_annotated.mp4 for a quick summary of the solution. 
+These are the following Sections:
 
-1. [File] - Details of files and directories in this repository)
-2. [Usage] - Step by step instructions to execute this code)
-3. [Explanation] - Reasoning behind the code)
+1. [File] -Details of files and directories in this repository
+2. [Usage] - Step by step instructions to execute this code
+3. [Explanation] - Reasoning behind the code
 
 ## 1. Files
 `data/` - Folder containing reference and test videos. Also saves annotated video and clustering model here. \
@@ -16,7 +17,7 @@ This repository contains code for analyzing a user's pose to a given reference p
 `console_output.mp4` - Screen recording of console output for `monitor_action.py`. \
 `utils.py` - Wave action Class and member functions.\
 `requirements.txt` - Contains all package dependencies.\
-`README.md` - Readme file for this repository.\
+`README.md` - Readme file for this repository.
 
 ## 2. Usage
 
@@ -63,9 +64,11 @@ This Section provides the reasoning behind the code utilised in this solution.
 ### Defining the Wave action from Video A
 This is performed in `define_action.py`. Pose data from all frames in Video A are extracted and stored in in variable `action` using `get_pose()` method. 
 A simple K-Means clustering is performed on this data to define the action and identify the intermediate *steps*. The `n_clusters` hyperparameter gives the number of *steps* in the Wave action.
-In this solution 3 *steps* are identified— 1)start, 2)mid, 3)end. "start" and "end" are extreme positions and mid is the intermediate position. If more intermediate *steps* are required, 
-`n_clusters` can be defined appropriately. K-Means clustering was chosen for the following reasons:
+In this solution 3 *steps* are identified— 1)start, 2)mid, 3)end. "start" and "end" are extreme positions and "mid" is the intermediate position. If more intermediate *steps* are required, 
+`n_clusters` can be defined appropriately. Figure below shows a 2D PCA(Principal Component Analysis) projection of the clustered poses in Wave action from Video A. 
+![cluster](pics/cluster.PNG)
 
+K-Means clustering was chosen for the following reasons:
 * **speed**: K-Means is one of the fastest ML algorithms especially for unsupervised data. This should work well for real time processing.
 * **scalablity**: K-Means scales well for large datasets for less number of clusters. It is expected that intermediate steps is less than 10 for any action.
 * **data driven**: Does not need manual supervision/ feature engineering. Intermediate steps is diveded into clusters without explicitly defining. 
@@ -73,13 +76,25 @@ Although it does allow a user to input priors(if required).\
 * **application**: The intuition behind using clustering was the context provided by the assignment document. The fitness app guides a user to follow a reference action. 
 An action typically should have intermediate *steps* which have to be achieved with a certain *accuracy*. This is particularly the case for Yoga, weightlifting, pilates etc,. 
 K-Means clustering identifies these *steps* as clusters of points having a cluster center. The cluster center corresponds to the ideal pose(that of the top athlete).
+This allows us to determine how accturate is a user's pose compared to the closest reference *step*(cluster center). 
 
-Figure below shows a 2D PCA(Principal Component Analysis) projection of the poses in Wave action from Video A.
-![cluster](pics/cluster.PNG) 
-![cosine](pics/cosine.PNG)
+### Comparing a User's action to refrence action
+This is performed in `monitor_action.py`. Again, pose data from Video B is extracted frame by frame using `get_pose()` method. This is then processed by the method `get_status()` by using 
+cluster model weights from the previous step. In the figure shown below, *p<sub>i</sub>* reresents the reference ideal pose of the top athlete. Let *p<sub>i</sub>* be the user's pose at any point in time. 
+Then, the similarity of the user's pose to the closest ideal pose, is given by the formulas for *S<sub>ij</sub>* below. The metric is a modified version of the 
+cosine similarity metric used in pose detection networks. The modification is performed to increase sensitivity for poses that are close to each other. 
+The advantage of using cosine similarity over euclidean distance, is that it is not corrupted by the magnitude of the vectors. This means that the persons height, limb size, position etc., 
+do not matter as long as the two poses are similar. This is desired for application to real world scenario. In the code, *S<sub>ij</sub>* is stored in the variable `sim_to_clust`.
+If this value is within a pre-defined threshold, the action is accepted. If it is above the threshold, the action is rejected and the `rep` is not counted. 
+The threshold is determmined by determining similarity between two closest cluster centers. The *accuracy* of a user's pose to the reference pose is printed 
+on screen and given by 100 - *S<sub>ij</sub>*. 
 ![thresh](pics/thresh.PNG)
-![correct](pics/correct.PNG) 
+The figure below shows an example stituation of a user's pose deviating from the reference path. This happens when the point is too far away from the closest cluster center. 
+The UI then throws a warning message to correct the user.   
 ![incorrect](pics/incorrect.PNG)   
+The figure below shows an example stituation of a user's pose following the reference path. The UI shows progress of current rep and the total reps completed. 
+![correct](pics/correct.PNG) 
+
 
 
   
