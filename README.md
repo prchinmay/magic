@@ -2,8 +2,11 @@ magic
 =================
 
 ## Overview
-This repository contains code for analyzing a user's pose to a given reference pose. The section Usage provides step by step instructions to execute this code. 
-The Section Explanation provides the reasoning behind the code utilised in this solution.
+This repository contains code for analyzing a user's pose to a given reference pose. 
+
+1. [File] (#Details of files and directories in this repository)
+2. [Usage] (#Rtep by step instructions to execute this code)
+3. [Explanation](Reasoning behind the code)
 
 ## Files
 `data/` - Folder containing reference and test videos. Also saves annotated video and clustering model here. \
@@ -51,12 +54,16 @@ python3 monitor_action.py
 ```
 ### Results
 Total "Wave" action reps and percentage completion of current Wave action are printed to the console frame by frame. 
-If `annotate_vid()` is enabled in `define_action.py`, then annotations of Video B is saved inside the `data` folder.
+If `annotate_vid()` is enabled in `monitor_action.py`, then annotations of Video B is saved inside the `data` folder.
  
 
 ## Explanation
 This Section provides the reasoning behind the code utilised in this solution. 
 
 ### Defining the Wave action from Video A
+This is performed in `define_action.py`. Pose data from all frames in Video A are extracted and stored in in variable `action` using `get_pose()` method. 
+A simple K-Means clustering is performed on this data to define the action and identify the intermediate steps. The `n_clusters` hyperparameter gives the number of steps in the Wave action.
+In this solution 3 steps are identified— 1)start, 2)mid, 3)end. Start and mid are extreme positions and mid is the intermediate position. If more intermediate steps are required, 
+`n_clusters` can be defined appropriately. K-Means clustering was chosen for the following reasons:
 
-
+  
