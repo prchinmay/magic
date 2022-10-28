@@ -6,11 +6,11 @@ This repository contains code for analyzing a user's pose to a given reference p
 The Section Explanation provides the reasoning behind the code utilised in this solution.
 
 ## Files
-`data/` - Folder containing reference and test videos. Also saves annotated video and clustering model here.
-`params.py` - Edit this file for changing paths. It also declares values of all parameters used in this solution.
-`define_action.py` - Code for defining "Wave" action based on reference Video.
-`monitor_action.py` - Process User provided Video and compare action with pre defined action.
-`console_output.mp4` - Screen recording of console output for `monitor_action.py`.
+`data/` - Folder containing reference and test videos. Also saves annotated video and clustering model here. \
+`params.py` - Edit this file for changing paths. It also declares values of all parameters used in this solution. \
+`define_action.py` - Code for defining "Wave" action based on reference Video. \
+`monitor_action.py` - Process User provided Video and compare action with pre defined action. \
+`console_output.mp4` - Screen recording of console output for `monitor_action.py`. \
 `utils.py` - Wave action Class and member functions.
 `requirements.txt` - Contains all package dependencies.
 `README.md` - Readme file for this repository.
@@ -50,7 +50,7 @@ python3 monitor_action.py
 
 ```
 ### Results
-Total Wave action reps and percentage completion of current Wave action are printed to the console. 
+Total "Wave" action reps and percentage completion of current Wave action are printed to the console frame by frame. 
 If `annotate_vid()` is enabled in `define_action.py`, then annotations of Video B is saved inside the `data` folder.
  
 
