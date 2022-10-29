@@ -18,13 +18,13 @@ These are the following Sections:
 `utils.py` - Wave action Class and member functions.\
 `requirements.txt` - Contains all package dependencies.\
 `README.md` - Readme file for this repository.\
-`magic.ipynb` - colab notebook of the implementation.
+`magic.ipynb` - jupyter notebook of the implementation.
 
 ## 2. Usage
 
 Please make sure you are using Python >= 3.7 so that the latest MediaPipe library is intsalled. This is very important. 
 Some functions used in this code are not available in older versions of MediaPipe library. 
-Follow the instructions in the steps mentioned below for implementation on a linux environment. Alternatively a google colab file is provided.
+Follow the instructions in the steps mentioned below for implementation on a linux environment. Alternatively a jupyter notebook is provided.
 
 ### Step 1: Clone repository
 Open a linux terminal and clone this repository to your workspace using:
@@ -37,7 +37,9 @@ cd magic/
 ### Step 2: Create new virtual environment
 Before intalling dependencies, let us first create a new virtual environment using(ensure Python >= 3.7):
 ```
-python3 -m venv magic && source magic/bin/activate
+python3 -m pip install --user virtualenv &
+python3 -m virtualenv magic &
+source magic/bin/activate
 ```
 ### Step 3: Install Dependencies
 Install dependiencies using:
