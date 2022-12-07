@@ -1,9 +1,19 @@
-magic
+Magic
 =================
 
 ## Overview
-This repository contains code for analyzing a user's pose to a given reference pose. Watch the Video B_annotated.mp4 for a quick summary of the solution. 
-These are the following Sections:
+This repository contains code for comparing a user's pose to a given reference pose. 
+The code funtions as a part of the software for a fitness app. Given a reference video of the correct way to do a particular exercise,
+The following tasks are performed:
+* Analyse the action being shown in the video and define it as the "correct action" with a certain "flexiblity".	
+* Detect a user’s pose while exercising via a front-facing camera feed.
+* Calculating how close their movements are to the correct body positioning defined previously.
+* Counting their repetitions (reps) of the exercise.
+
+Watch the Video B_annotated.mp4 for a quick  summary of the solution. 
+
+## Contents 
+The following are the sections in this repository:
 
 1. [File] -Details of files and directories in this repository
 2. [Usage] - Step by step instructions to execute this code
