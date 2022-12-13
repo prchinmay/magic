@@ -2,6 +2,9 @@ Magic
 =================
 
 ## Overview
+
+![correct](pics/correct.PNG) 
+
 This repository contains code for comparing a user's pose to a given reference pose. 
 The code funtions as a part of the software for a fitness app. Given a reference video of the correct way to do a particular exercise,
 The following tasks are performed:
